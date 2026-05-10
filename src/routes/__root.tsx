@@ -80,6 +80,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "幸运转盘 · Lucky Wheel" },
+      { name: "twitter:description", content: "小清新风格的幸运转盘，自定义选项、保存方案，公平随机抽取。" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/f7a82ffe-b866-4f76-af1f-8cdd0fb2dc88" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/f7a82ffe-b866-4f76-af1f-8cdd0fb2dc88" },
     ],
     links: [
       {
