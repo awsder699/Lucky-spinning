@@ -37,12 +37,14 @@ export function Wheel({ options, onResult }: WheelProps) {
   const spin = () => {
     if (spinning || n < 2) return;
     setSpinning(true);
-    const winner = Math.floor(Math.random() * n);
-    // Pointer at top (12 o'clock). Slice i is centered at angle i*slice + slice/2 (measured clockwise from top).
-    // We rotate the wheel so the winning slice's center lands at the top (0deg).
-    const targetSliceCenter = winner * slice + slice / 2;
+    // Uniform random stop angle on the brim — any point equally likely.
+    const stopAngle = Math.random() * 360;
     const fullTurns = 6 + Math.floor(Math.random() * 3);
-    const finalRotation = rotation + fullTurns * 360 + (360 - (((rotation % 360) + targetSliceCenter) % 360));
+    const finalRotation = rotation + fullTurns * 360 + (360 - (((rotation % 360) + stopAngle) % 360));
+    // Determine which slice the pointer (top, 0°) lands in given stopAngle.
+    // After rotation, slice i (originally [i*slice, (i+1)*slice]) sits under the pointer
+    // when stopAngle falls in that range.
+    const winner = Math.floor(stopAngle / slice) % n;
     setRotation(finalRotation);
     setTimeout(() => {
       setSpinning(false);
